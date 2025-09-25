@@ -1,13 +1,16 @@
-export class SkillLevel {
-  private readonly value: string;
+import { ValueObject } from 'src/domain/common/value-objects/value-object';
+import { InvalidArgumentException } from 'src/domain/common/exceptions/invalid-argument.exception';
 
+export class SkillLevel extends ValueObject<string> {
   constructor(value: string) {
-    // Based on schema, skillLevel is optional.
-    if (value.length > 255) throw new Error('Skill level must be 255 characters or less.');
-    this.value = value;
+    super(value);
   }
 
-  toString(): string {
-    return this.value;
+  protected validate(value: string): void {
+    if (value.length > 255) {
+      throw new InvalidArgumentException(
+        'Skill level must be 255 characters or less.',
+      );
+    }
   }
 }

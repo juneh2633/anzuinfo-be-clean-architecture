@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateAccountDto {
@@ -12,8 +12,13 @@ export class CreateAccountDto {
   @IsNotEmpty()
   pw: string;
 
-  @ApiProperty({ description: '플레이어 이름', example: 'TEST' })
   @IsString()
-  @IsNotEmpty()
-  playerName: string;
+  @Matches(/^SV-\d{4}-\d{4}$/, {
+    message: 'sdvxId must follow the format "SV-XXXX-XXXX" where X is a digit',
+  })
+  @ApiProperty({
+    description: '사볼 sv번호',
+    default: 'SV-5264-9170',
+  })
+  sdvxId: string;
 }

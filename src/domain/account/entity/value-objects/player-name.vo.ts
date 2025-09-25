@@ -1,14 +1,10 @@
-export class PlayerName {
-  private readonly value: string;
+import { ValueObject } from "src/domain/common/value-objects/value-object";
 
-  constructor(value: string) {
-    // Based on schema, playerName is optional.
-    if (value.length > 255)
+export class PlayerName extends ValueObject<string> {
+  
+  protected validate(value: string): void {
+    if (value.length > 255) {
       throw new Error('Player name must be 255 characters or less.');
-    this.value = value;
-  }
-
-  toString(): string {
-    return this.value;
+    }
   }
 }

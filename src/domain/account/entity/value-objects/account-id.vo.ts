@@ -1,15 +1,10 @@
-export class AccountId {
-  private readonly value: string;
+import { ValueObject } from "src/domain/common/value-objects/value-object";
 
-  constructor(value: string) {
+export class AccountId extends ValueObject<string> {
+
+  protected validate(value: string): void {
     if (!value) throw new Error('ID is required.');
     if (value.length > 255)
       throw new Error('ID must be 255 characters or less.');
-    // Add other validation rules as needed (e.g., regex for allowed characters)
-    this.value = value;
-  }
-
-  toString(): string {
-    return this.value;
   }
 }
