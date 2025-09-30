@@ -12,13 +12,12 @@ import { Vf } from './value-objects/vf.vo';
 import { RankIdx } from './value-objects/rank-idx.vo';
 
 export class Account {
-
   private readonly _idx: number | null;
 
   constructor(
     public readonly id: AccountId,
     public readonly pw: Password,
-    public readonly sdvxId: SdvxId,
+    public readonly sdvxId: SdvxId | null,
     public readonly playerName: PlayerName | null,
     public readonly skillLevel: SkillLevel | null,
     public readonly vf: Vf | null,
@@ -26,11 +25,14 @@ export class Account {
     public readonly rankIdx: RankIdx | null,
     public readonly isHidden: IsHidden,
     public readonly createdAt: CreatedAt,
-    public readonly updatedAt: UpdatedAt,
-    public readonly deletedAt: DeletedAt,
-    idx?: number, // Optional parameter for idx
+    public readonly updatedAt: UpdatedAt | null,
+    public readonly deletedAt: DeletedAt | null,
+    idx?: number | null, // Optional parameter for idx
   ) {
     this._idx = idx ?? null; // Assign idx or default to null
   }
-  
+
+  getIdx(): number | null {
+    return this._idx;
+  }
 }

@@ -1,14 +1,15 @@
-import { IAccountRepository } from "src/domain/account/port/out/account.repository.port";
+import { IAccountReadRepository, IAccountRepository, IAccountWriteRepository } from 'src/domain/account/port/out/account.repository.port';
 
 export interface UnitOfWork {
   withTransaction<T>(
     work: (repos: UowRepositories) => Promise<T>,
-    options?: TxOptions
+    options?: TxOptions,
   ): Promise<T>;
 }
 
 export interface UowRepositories {
-  accountRepo: IAccountRepository;
+  accountReadRepo: IAccountReadRepository;
+  accountWriteRepo?: IAccountWriteRepository;
   // chartRepo?: IChartRepository;
 }
 

@@ -7,7 +7,11 @@ export class RankIdx extends ValueObject<number> {
   }
 
   protected validate(value: number): void {
-    if (typeof value !== 'number' || !Number.isInteger(value) || ![0, 1, 2].includes(value)) {
+    if (
+      typeof value !== 'number' ||
+      !Number.isInteger(value) ||
+      ![0, 1, 2].includes(value)
+    ) {
       throw new InvalidArgumentException('rankIdx must be one of 0, 1, or 2');
     }
   }

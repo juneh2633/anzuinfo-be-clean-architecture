@@ -1,7 +1,10 @@
-import { ValueObject } from "src/domain/common/value-objects/value-object";
+import { ValueObject } from 'src/domain/common/value-objects/value-object';
 
 export class AccountId extends ValueObject<string> {
 
+  constructor(value: string) {
+    super(value);
+  }
   protected validate(value: string): void {
     if (!value) throw new Error('ID is required.');
     if (value.length > 255)

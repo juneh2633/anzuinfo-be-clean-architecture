@@ -3,4 +3,3 @@ export interface DomainEvent {
   readonly aggregateId: string | number;
   readonly occurredAt: Date;
 }
-
