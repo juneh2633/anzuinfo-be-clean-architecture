@@ -1,15 +1,19 @@
-import { IsString, IsNotEmpty, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail, IsString, Matches } from 'class-validator';
 
-export class CreateAccountDto {
-  @ApiProperty({ description: '로그인 아이디', example: 'testuser' })
+export class SignUpDto {
   @IsString()
-  @IsNotEmpty()
+  @ApiProperty({
+    description: '회원가입 아이디',
+    default: 'juneh2633',
+  })
   id: string;
 
-  @ApiProperty({ description: '비밀번호', example: 'password123' })
   @IsString()
-  @IsNotEmpty()
+  @ApiProperty({
+    description: '회원가입 비밀번호',
+    default: 'asdf1234',
+  })
   pw: string;
 
   @IsString()
