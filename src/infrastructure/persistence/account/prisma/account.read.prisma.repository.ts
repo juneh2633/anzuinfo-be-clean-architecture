@@ -1,7 +1,7 @@
 // infrastructure/persistence/account/prisma/account.read.prisma.repository.ts
 import { Injectable } from '@nestjs/common';
 import { Prisma, PrismaClient } from '@prisma/client';
-import { IAccountReadRepository } from 'src/domain/account/port/out/account.read-repository.port';
+import { AccountReadRepositoryPort } from 'src/domain/account/port/out/account.read-repository.port';
 import { AccountMapper } from '../account.mapper';
 import { PrismaAccountMap } from '../account.prisma.map';
 
@@ -9,7 +9,7 @@ import { PrismaAccountMap } from '../account.prisma.map';
 type Db = Pick<PrismaClient, 'account'> | Prisma.TransactionClient;
 
 @Injectable()
-export class AccountReadPrismaRepository implements IAccountReadRepository {
+export class AccountReadPrismaRepository implements AccountReadRepositoryPort {
   constructor(private readonly db: Db) {}
 
   async findByIdx(idx: number) {

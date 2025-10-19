@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Account } from 'src/domain/account/entity/account.entity';
-import { IAccountWriteRepository } from 'src/domain/account/port/out/account.write-repository.port';
+import { AccountWriteRepositoryPort } from 'src/domain/account/port/out/account.write-repository.port';
 import { AccountMapper } from '../account.mapper';
 import { PrismaAccountMap } from '../account.prisma.map';
 
@@ -10,8 +10,8 @@ import { PrismaAccountMap } from '../account.prisma.map';
 type Db = Pick<PrismaClient, 'account'> | Prisma.TransactionClient;
 
 @Injectable()
-export class AccountWritePrismaRepository implements IAccountWriteRepository {
-  constructor(private readonly db: Db) {}
+export class AccountWritePrismaRepository implements AccountWriteRepositoryPort {
+  constructor(private readonly db: Db) { }
 
   async create(account: Account): Promise<Account> {
     const record = AccountMapper.toPersistence(account);

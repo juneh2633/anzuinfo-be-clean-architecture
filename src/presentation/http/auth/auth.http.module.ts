@@ -1,7 +1,7 @@
 // src/infrastructure/auth/auth.infrastructure.module.ts
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtTokenProvider } from 'src/infrastructure/auth/jwt.token-provier';
+import { JwtTokenProvider } from 'src/infrastructure/auth/jwt.token-provider';
 
 @Module({
   imports: [

@@ -3,12 +3,12 @@ import {
   ForbiddenException, UnauthorizedException, Inject,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { TokenProvider } from 'src/domain/auth/port/out/token-provider.port';
-import { TOKEN_PROVIDER } from 'src/domain/auth/port/out//di-tokens';
+import { TokenProvider } from 'src/domain/auth/port/out/token-encoder.port';
+import { TOKEN_PROVIDER } from 'src/domain/auth/port/out/di-tokens';
 import { guestPayload } from '../../auth/auth-principal';
 
 @Injectable()
-export class RankGuard implements CanActivate {
+export class RankGuard implements CanActivate { 
   constructor(
     private readonly reflector: Reflector,
     @Inject('TOKEN_PROVIDER') private readonly tokens: TokenProvider, // 바인딩은 모듈에서

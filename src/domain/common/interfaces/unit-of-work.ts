@@ -1,4 +1,5 @@
-import { IAccountReadRepository, IAccountRepository, IAccountWriteRepository } from 'src/domain/account/port/out/account.repository.port';
+import { AccountReadRepositoryPort } from "src/domain/account/port/out/account.read-repository.port";
+import { AccountWriteRepositoryPort } from "src/domain/account/port/out/account.write-repository.port";
 
 export interface UnitOfWork {
   withTransaction<T>(
@@ -8,8 +9,8 @@ export interface UnitOfWork {
 }
 
 export interface UowRepositories {
-  accountReadRepo: IAccountReadRepository;
-  accountWriteRepo?: IAccountWriteRepository;
+  accountReadRepo: AccountReadRepositoryPort;
+  accountWriteRepo?: AccountWriteRepositoryPort;
   // chartRepo?: IChartRepository;
 }
 
